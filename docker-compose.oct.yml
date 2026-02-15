@@ -1,0 +1,38 @@
+# OCT - Build from source and run locally
+# Use this to run OCT (Paperless-ngx + OCT extensions) with your changes.
+#
+# Usage:
+#   docker compose -f docker-compose.oct.yml up --build -d
+#
+# Then open http://localhost:8000
+
+services:
+  broker:
+    image: docker.io/library/redis:8
+    restart: unless-stopped
+    volumes:
+      - redisdata:/data
+
+  webserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: oct-paperless:local
+    restart: unless-stopped
+    depends_on:
+      - broker
+    ports:
+      - "8000:8000"
+    volumes:
+      - oct_data:/usr/src/paperless/data
+      - oct_media:/usr/src/paperless/media
+      - ./docker/compose/export:/usr/src/paperless/export
+      - ./docker/compose/consume:/usr/src/paperless/consume
+    env_file: docker/compose/docker-compose.env
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+
+volumes:
+  oct_data:
+  oct_media:
+  redisdata:

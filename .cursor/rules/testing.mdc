@@ -1,0 +1,45 @@
+---
+description: Testing requirements - every feature must be tested
+alwaysApply: true
+---
+
+# Testing Standards
+
+## Rule
+
+**No feature is complete without tests.** When implementing or delegating:
+
+1. Write tests alongside the implementation
+2. Run tests before considering the task done
+3. Tests must pass
+
+## Test Types
+
+| Type | When to Use |
+|------|-------------|
+| Unit | Pure logic, utilities, single functions |
+| Integration | API endpoints, DB interactions, external services |
+| E2E | Critical user flows (e.g., upload → OCR → result) |
+
+## Structure
+
+```
+// Unit test - clear arrange/act/assert
+it('extracts text from valid PDF', async () => {
+  const doc = createTestDocument({ type: 'pdf', content: samplePdf });
+  const result = await extractText(doc);
+  expect(result.text).toContain('expected content');
+  expect(result.confidence).toBeGreaterThan(0.9);
+});
+```
+
+## Delegation Checklist
+
+When an agent completes a task:
+- [ ] Tests exist for new/changed behavior
+- [ ] `cd src && pytest` passes (Python backend)
+- [ ] Edge cases considered (empty input, invalid format, etc.)
+
+## Paperless-ngx
+
+Run tests from `src/`: `pytest`. See CONTRIBUTING.md for environment setup.

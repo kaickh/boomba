@@ -1,0 +1,45 @@
+---
+description: Core coding standards - clean, maintainable, production-ready
+alwaysApply: true
+---
+
+# Coding Standards
+
+## Principles
+
+- **Single responsibility**: One clear purpose per function, class, module
+- **Explicit over implicit**: No magic, no hidden state
+- **Fail fast**: Validate inputs, surface errors clearly
+- **Document intent**: Comments explain why, not what
+
+## Structure
+
+```
+// ❌ BAD - vague, no error handling
+function process(doc) {
+  return ocr(doc);
+}
+
+// ✅ GOOD - explicit, typed, handles failure
+async function extractTextFromDocument(
+  document: DocumentInput
+): Promise<ExtractionResult> {
+  if (!document.content) {
+    throw new ValidationError('Document must have content');
+  }
+  const result = await ocrEngine.extract(document);
+  return { text: result.text, confidence: result.confidence };
+}
+```
+
+## Naming
+
+- Functions: verbs (`extractText`, `validateDocument`)
+- Types/Classes: nouns (`DocumentProcessor`, `ExtractionResult`)
+- Booleans: `is*`, `has*`, `can*` prefixes
+
+## Error Handling
+
+- Use typed errors, not generic `Error`
+- Include context (what failed, why)
+- Log before rethrowing when appropriate

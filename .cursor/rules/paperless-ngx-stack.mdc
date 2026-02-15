@@ -1,0 +1,39 @@
+---
+description: Paperless-ngx stack conventions - Django, pytest, ruff
+globs: "src/**/*.py,**/*.ts"
+alwaysApply: false
+---
+
+# Paperless-ngx Stack Conventions
+
+## Python / Django
+
+- **Format**: ruff (format + check). Run: `ruff format . && ruff check .`
+- **Tests**: pytest in `src/`. Run: `cd src && pytest`
+- **Imports**: Absolute imports; group: stdlib, third-party, local
+- **Models**: Use `documents.models` for Document, Tag, Correspondent, etc.
+
+## Test Structure
+
+```
+src/paperless_tesseract/
+├── parsers.py
+└── tests/
+    ├── test_parser.py
+    └── conftest.py
+```
+
+- Use `conftest.py` for shared fixtures
+- Follow existing patterns in `src/*/tests/`
+
+## Angular (src-ui)
+
+- TypeScript; follow existing component structure
+- Translation strings in `src-ui/messages.xlf`
+
+## Adding a Parser
+
+1. Create `src/paperless_<name>/` with `parsers.py`, `apps.py`, `checks.py`
+2. Extend `documents.parsers.DocumentParser`
+3. Register in `PAPERLESS_PARSER_MAPPING` (see existing parsers)
+4. Add tests in `tests/test_parser.py`

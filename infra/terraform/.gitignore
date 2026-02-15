@@ -1,0 +1,5 @@
+# Terraform local files - do not commit
+.terraform/
+*.tfstate
+*.tfstate.*
+aws-credentials.sh

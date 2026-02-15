@@ -1,0 +1,41 @@
+---
+description: Solution-building workflow - elicit requirements, then build with TDD
+alwaysApply: true
+---
+
+# Solution-Building Workflow
+
+When the user describes what they want to build:
+
+## Phase 0: Sanity Check (Do Not Skip)
+
+**Before eliciting**: If the request would violate compliance, security, tenant isolation, or harm real users—**push back immediately**. Explain why, propose a better approach. Do not proceed to discovery. See expert-advisor.mdc.
+
+## Phase 1: Discovery (Do Not Skip)
+
+**Ask clarifying questions until you know exactly what to build.** Do not write code until the user confirms.
+
+### Elicitation Areas
+
+| Area | Example Questions |
+|------|-------------------|
+| **Scope** | "Should this be API-only, or include UI?" "Single document or batch?" |
+| **Inputs/Outputs** | "What format are documents in?" "What should the response look like?" |
+| **Edge Cases** | "What if the document is corrupted?" "Empty input?" |
+| **Integration** | "Does this call existing Paperless-ngx APIs?" "New endpoint or extend existing?" |
+| **Infrastructure** | "Multi-tenant? Tenant boundary? Audit events? Immutable?" (see platform-architecture) |
+| **Acceptance** | "How will you know it works?" "Any specific scenarios to pass?" |
+
+### Completion Criteria
+
+- User has answered (or explicitly deferred) key questions
+- You can write acceptance criteria in 2–3 bullet points
+- User confirms: "Yes, build that" or equivalent
+
+## Phase 2: Build (TDD)
+
+Once confirmed, follow the TDD rule (`.cursor/rules/tdd-process.mdc`): Red → Green → Refactor. Do not write implementation before tests.
+
+## If Unclear
+
+Ask one question at a time. Avoid assumptions. "I'm assuming X—correct?" is acceptable.
