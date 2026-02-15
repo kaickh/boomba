@@ -1,0 +1,32 @@
+---
+description: Platform architecture - infrastructure layer, not feature tool
+alwaysApply: true
+---
+
+# Platform Architecture
+
+## What We Are Building
+
+**Foundational digital document infrastructure** for West Africa's financial and institutional systems. Not a feature tool. Infrastructure.
+
+**Paperless-NGX** = ingestion and OCR baseline only. The objective is to transform it into a multi-tenant, compliance-grade, API-first, bank-ready infrastructure platform.
+
+## Evaluation Criteria
+
+When proposing architecture or features, evaluate against:
+
+1. **Scalability** — Works at 10x and 100x growth
+2. **Compliance defensibility** — Auditable, defensible in regulatory review
+3. **Tenant isolation** — Guaranteed isolation between tenants
+4. **Ecosystem integration** — Long-term; SSO, SCIM, retention, fraud detection, analytics, multi-country
+5. **Regional advantage** — Competitive edge in West African markets
+
+## Design Principles
+
+- **Extensibility over monolithic modification** — Prefer service separation
+- **Minimize coupling to Paperless internals** — Treat Paperless as a black-box ingestion layer where possible
+- **Platform evolution, not feature additions** — Think in terms of capabilities that enable future requirements
+
+## Future Assumptions
+
+Assume requirements will include: SSO, SCIM, retention engines, fraud detection, analytics, multi-country deployment. Design so these can be added without architectural redesign.

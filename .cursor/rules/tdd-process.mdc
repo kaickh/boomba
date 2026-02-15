@@ -1,0 +1,45 @@
+---
+description: Enterprise TDD - Red-Green-Refactor, test-first, no exceptions
+alwaysApply: true
+---
+
+# Enterprise TDD Process
+
+When implementing a feature, follow this order strictly.
+
+## 1. Red — Write the Failing Test First
+
+- Write the test that defines the desired behavior
+- Run it; it must fail (behavior does not exist yet)
+- Test names: `test_<behavior>_when_<condition>` or `it('does X when Y')`
+
+## 2. Green — Minimal Implementation
+
+- Write the smallest amount of code to make the test pass
+- No extra features, no "while I'm here" changes
+- Run tests; all must pass
+
+## 3. Refactor — Clean Up
+
+- Improve structure, naming, remove duplication
+- Tests must still pass after refactor
+
+## Test Levels (Use All That Apply)
+
+| Level | When | Example |
+|-------|------|---------|
+| Unit | Pure logic, single function | Parser, validator |
+| Integration | API, DB, external service | View, Celery task |
+| E2E | Critical user flow | Upload → OCR → result |
+
+## Rules
+
+- **No production code before its test** — Exception: exploratory spikes (mark as such)
+- **One logical behavior per test** — Avoid multiple asserts for unrelated things
+- **Arrange-Act-Assert** — Clear structure in every test
+
+## Paperless-ngx
+
+- Tests in `src/<app>/tests/`
+- Run: `cd src && pytest`
+- Use `conftest.py` for shared fixtures

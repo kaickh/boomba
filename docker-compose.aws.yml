@@ -1,0 +1,30 @@
+# OCT on AWS - use image from ECR (built by CI)
+# Set env: ECR_IMAGE, PAPERLESS_DBHOST, PAPERLESS_DBPASS, PAPERLESS_REDIS
+#
+# Example:
+#   export ECR_IMAGE=123456789.dkr.ecr.us-east-1.amazonaws.com/oct-paperless:latest
+#   export PAPERLESS_DBHOST=oct.xxxx.us-east-1.rds.amazonaws.com
+#   export PAPERLESS_DBPASS=...
+#   export PAPERLESS_REDIS=redis://oct.xxxx.cache.amazonaws.com:6379
+#   docker compose -f docker-compose.aws.yml up -d
+
+services:
+  webserver:
+    image: ${ECR_IMAGE}
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      PAPERLESS_REDIS: ${PAPERLESS_REDIS}
+      PAPERLESS_DBHOST: ${PAPERLESS_DBHOST}
+      PAPERLESS_DBPORT: ${PAPERLESS_DBPORT:-5432}
+      PAPERLESS_DBNAME: ${PAPERLESS_DBNAME:-paperless}
+      PAPERLESS_DBUSER: ${PAPERLESS_DBUSER:-paperless}
+      PAPERLESS_DBPASS: ${PAPERLESS_DBPASS}
+    volumes:
+      - oct_data:/usr/src/paperless/data
+      - oct_media:/usr/src/paperless/media
+
+volumes:
+  oct_data:
+  oct_media:

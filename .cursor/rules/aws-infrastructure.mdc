@@ -1,0 +1,37 @@
+---
+description: AWS infrastructure patterns - production-grade cloud architecture
+globs: "**/*.tf,**/infra/**/*,**/cloudformation/**/*,**/cdk/**/*,serverless.yml,docker/**/*"
+alwaysApply: false
+---
+
+# AWS Infrastructure Standards
+
+## Current Deployment
+
+Paperless-ngx uses Docker/docker-compose (`docker/`). OCT will extend to AWS (Lambda, S3, etc.) for scale. When editing `docker/` files, maintain compatibility with existing compose setup.
+
+## Build Like 20 Years of Experience
+
+- **Multi-AZ**: No single points of failure
+- **Least privilege**: IAM roles scoped to minimum required
+- **Encryption**: At rest (S3, RDS) and in transit (TLS)
+- **Observability**: CloudWatch, X-Ray, structured logging
+
+## OCR-Specific Considerations
+
+- **S3**: Document storage with lifecycle policies; pre-signed URLs for secure access
+- **Lambda**: Stateless OCR processing; consider cold starts for large documents
+- **SQS/SNS**: Async job queues for batch processing
+- **RDS/Aurora**: Metadata, user data; consider read replicas for scale
+
+## Cost Awareness
+
+- Use Spot for non-critical batch OCR
+- S3 Intelligent-Tiering for archived documents
+- Right-size instances; use auto-scaling
+
+## Security
+
+- Never log PII or document content
+- VPC for private resources
+- Secrets Manager for API keys, credentials

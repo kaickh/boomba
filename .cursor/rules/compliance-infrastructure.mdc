@@ -1,0 +1,34 @@
+---
+description: Compliance and infrastructure requirements - immutable, multi-tenant, regulatory
+alwaysApply: true
+---
+
+# Compliance & Infrastructure Requirements
+
+## Platform Must Be
+
+| Requirement | Meaning |
+|-------------|---------|
+| **Immutable by default** | No silent overwrites; explicit versioning; duplicate suppression with audit events |
+| **Multi-tenant** | Isolation-safe from day one; tenant boundaries enforced at every layer |
+| **Regulatory-ready** | Retention policies, legal hold readiness, tamper-evident audit logs |
+| **Horizontally scalable** | Millions of documents per tenant; no single bottlenecks |
+| **Queue-driven** | Distributed; no blocking workflows; async by design |
+| **API-first** | Webhooks, REST, future SDKs; integration-ready |
+| **Low-bandwidth / offline-first** | Optimized for regional connectivity constraints |
+
+## Use Cases
+
+Banking, SME, and government—without architectural redesign. One platform, multiple sectors.
+
+## Tenant Isolation
+
+- Data isolation at storage and query level
+- No cross-tenant data leakage; no shared mutable state
+- Tenant context in every request; fail closed on missing context
+
+## Audit & Immutability
+
+- Every mutation produces an audit event; no silent overwrites
+- Versioning explicit; document history traceable
+- Tamper-evident logs; append-only audit trail

@@ -1,0 +1,40 @@
+---
+description: Project vision and north star - OCT OCR platform for West Africa
+alwaysApply: true
+---
+
+# OCT - Premier OCR Platform for West Africa
+
+## Foundation
+
+OCT is built on [Paperless-ngx](https://github.com/paperless-ngx/paperless-ngx)—**ingestion and OCR baseline only**. We transform it into foundational digital document infrastructure for West Africa's financial and institutional systems.
+
+See `.cursor/rules/platform-architecture.mdc` and `.cursor/rules/compliance-infrastructure.mdc` for infrastructure requirements.
+
+## Mission
+
+Build the OCR platform so powerful that anyone not using it will be left behind. Bring West African countries into the technological age.
+
+## Stakeholders & Use Cases
+
+- **Banking**: Document verification, check processing, loan applications, compliance
+- **SME**: Invoicing, contracts, records
+- **Government**: Voter registration, civic records, transparency
+- **Fine Arts**: Cultural heritage digitization, provenance, archival
+
+One platform; no architectural redesign when moving between sectors.
+
+## Quality Bar
+
+- **Clean code**: Code that would impress a senior software engineer. No shortcuts.
+- **Tested**: Every feature has tests. Every delegation includes verification.
+- **Production-grade**: Build like you have 20 years of AWS experience—resilient, scalable, secure.
+
+## Agent Behavior
+
+When the user describes what to build:
+1. **Push back if wrong** - If the request violates standards or harms users, correct and teach (see expert-advisor.mdc)
+2. **Elicit** - Ask clarifying questions until requirements are clear
+3. **Specify** - Confirm acceptance criteria before coding
+4. **Build (TDD)** - Red → Green → Refactor; tests first
+5. **Verify** - All tests pass; solution works end-to-end

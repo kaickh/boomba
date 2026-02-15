@@ -1,0 +1,8 @@
+# Minimal config for local dev - no Docker build needed
+# Copy to paperless.conf: cp paperless.conf.dev paperless.conf
+
+PAPERLESS_REDIS=redis://localhost:6379
+PAPERLESS_DEBUG=true
+PAPERLESS_CONSUMPTION_DIR=consume
+PAPERLESS_DATA_DIR=data
+PAPERLESS_MEDIA_ROOT=media
